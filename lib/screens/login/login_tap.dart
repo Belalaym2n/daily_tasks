@@ -1,3 +1,4 @@
+import 'package:daily_tasks5/layout/homeLayout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,11 +23,13 @@ class LoginTab extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
                 }
-                final bool emailValid = RegExp(
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[com]+")
+
+                final bool emailValid =
+                RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[com]+")
                     .hasMatch(value);
+
                 if (!emailValid) {
-                  return "please enter valid email";
+                  return "email or password went wrong";
                 }
                 return null;
               },
@@ -39,19 +42,23 @@ class LoginTab extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
                 }
-                // RegExp regex = RegExp(
-                //     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-                // if (!regex.hasMatch(value)) {
-                //   return '''
-                //   -Password should contain upper,lower,
-                //   -digit and Special character''';
-                // }
+
+                RegExp regex =
+                RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z]).{7,}$');
+                if (!regex.hasMatch(value)){
+                  return "email or password went wrong";
+                }
                 return null;
               },
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                if(formKey.currentState!.validate()){
+                  Navigator.pushNamedAndRemoveUntil(context, HomeLayout.routeName, (route) => false
+                  );
+                }
+
 
 
               },
