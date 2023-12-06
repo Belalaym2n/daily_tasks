@@ -1,6 +1,8 @@
 import 'dart:async';
 
 
+import 'package:daily_tasks5/screens/login/login_screen.dart';
+import 'package:daily_tasks5/screens/task/task_screen.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../constant/color.dart';
@@ -26,9 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
      Timer(Duration(
-       seconds: 10
+       seconds: 3
      ), () { 
-       Navigator.pushNamedAndRemoveUntil(context, HomeLayout.routeName, (route) => false);
+       Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName,
+               (route) => false);
      });
     return Stack(
       children: [
