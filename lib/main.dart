@@ -1,6 +1,7 @@
 
 
 import 'package:daily_tasks5/screens/login/login_screen.dart';
+import 'package:daily_tasks5/screens/login/login_tap.dart';
 import 'package:daily_tasks5/screens/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashScreen.routeName:(context)=>SplashScreen(),
         LoginScreen.routeName:(context)=>LoginScreen(),
+        LoginTab.routeName:(context)=>LoginTab(),
         HomeLayout.routeName:(context)=>HomeLayout(),
       },
     );

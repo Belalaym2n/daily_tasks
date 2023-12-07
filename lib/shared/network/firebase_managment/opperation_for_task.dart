@@ -7,7 +7,7 @@ import 'firebase_function.dart';
 class OpperationForTask {
 
   static addTask(TaskModel taskModel) {
-    var collection = FirebaseFunction.taskCollection();
+    var collection = FirebaseCollection.taskCollection();
     var docref = collection.doc();
     taskModel.id = docref.id;
     docref.set(taskModel);
@@ -16,14 +16,14 @@ class OpperationForTask {
   static Stream<QuerySnapshot<TaskModel>> getTask(DateTime dateTime) {
     return
         //print ("iam here");
-        FirebaseFunction.taskCollection()
+      FirebaseCollection.taskCollection()
             .where("date",
                 isEqualTo: DateUtils.dateOnly(dateTime).millisecondsSinceEpoch)
             .snapshots();
   }
 
   static Future<void> deleteTask(String id) async {
-    FirebaseFunction.taskCollection().doc(id).delete();
+    FirebaseCollection.taskCollection().doc(id).delete();
   }
 
 

@@ -20,6 +20,8 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       extendBody: true,
       backgroundColor: mintGreen,
       appBar: AppBar(
