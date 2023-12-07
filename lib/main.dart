@@ -1,5 +1,6 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:daily_tasks5/screens/login/login_screen.dart';
 import 'package:daily_tasks5/screens/login/login_tap.dart';
 import 'package:daily_tasks5/screens/splash_screen/splash_screen.dart';
@@ -10,7 +11,10 @@ import 'firebase_options.dart';
 import 'layout/homeLayout.dart';
 
 void main() async{
-  WidgetsFlutterBinding();
+  WidgetsFlutterBinding.ensureInitialized();
+//  FirebaseFirestore.instance.disableNetwork();
+
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

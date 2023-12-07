@@ -1,4 +1,3 @@
-
 import 'package:daily_tasks5/layout/homeLayout.dart';
 import 'package:daily_tasks5/models/user_model.dart';
 import 'package:daily_tasks5/screens/login/login_tap.dart';
@@ -51,13 +50,7 @@ class SignUpTab extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your email';
                 }
-                final bool emailValid =
-                RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[com]+")
-                    .hasMatch(value);
 
-                if (!emailValid) {
-                  return "something went wrong";
-                }
                 return null;
               },
             ),
@@ -69,35 +62,49 @@ class SignUpTab extends StatelessWidget {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your password';
                 }
-                RegExp regex =
-                RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z]).{7,}$');
-                if (!regex.hasMatch(value)){
-                  return "something went wrong";
-                }
+
                 return null;
               },
             ),
             const SizedBox(height: 20),
-
-        ElevatedButton(
-          onPressed: () {
-            if(formKey.currentState!.validate()){
-              UserModel user=UserModel(name: nameController.text,
-                  age: ageController.text, email: emailController.text);
-              OpperationalForUser.addUser(user);
-Navigator.pushNamedAndRemoveUntil(context,
-    HomeLayout.routeName, (route) => false);
-            }
-
-            },
-
-          child: Text('SignUp',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(fontSize: 18)),
-        ),
-
+            ElevatedButton(
+              onPressed: () {
+                OpperationalForUser.createUserWithEmailAndPassword(
+                    emailController.text, passwordController.text, () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeLayout.routeName, (route) => false);
+                }, (message) {
+                  showDialog(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text("Error",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(fontSize: 18)),
+                      content: Text(message),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("Ok",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(fontSize: 18)))
+                      ],
+                    ),
+                  );
+                });
+              },
+              child: Text('SignUp',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontSize: 18)),
+            ),
           ],
         ),
       ),

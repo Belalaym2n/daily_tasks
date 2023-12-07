@@ -1,4 +1,5 @@
 import 'package:daily_tasks5/layout/homeLayout.dart';
+import 'package:daily_tasks5/shared/network/firebase_managment/opperation_for_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -62,8 +63,27 @@ class LoginTab extends StatelessWidget {
                    const SizedBox(height: 20),
                    ElevatedButton(
                      onPressed: () {
-                       if(formKey.currentState!.validate()){
-Navigator.pushNamedAndRemoveUntil(context, HomeLayout.routeName, (route) => false);                       }
+                       OpperationalForUser.
+                       signInWithEmailAndPassword(
+                           emailController.text,
+                           passwordController.text,
+                           (){
+                             Navigator.pushNamedAndRemoveUntil(context, HomeLayout.routeName, (route) => false);
+                           },
+                           (String message){
+                             showDialog(
+                               barrierDismissible: false,
+                               context: context, builder: (context) => AlertDialog(
+                               title: Text("Error"),
+                               content:Text(message) ,
+                               actions: [
+                                 ElevatedButton(onPressed: () {
+                                   Navigator.pop(context);
+                                 }, child: Text("Okey"))
+                               ],
+                             ),);
+                           }
+                       );
 
 
 
