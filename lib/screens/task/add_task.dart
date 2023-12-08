@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -156,6 +157,7 @@ class _AddTaskButtonSheetState extends State<AddTaskButtonSheet> {
 
                 if(formKey.currentState!.validate()){
                   TaskModel task=TaskModel(
+                    userUid: FirebaseAuth.instance.currentUser!.uid,
                       tittle: tittleControllar.text,
                       description: descriptionControllar.text,
                       date: DateUtils.dateOnly(selectedDate).millisecondsSinceEpoch);

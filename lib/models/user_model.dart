@@ -3,10 +3,11 @@ import 'package:daily_tasks5/models/task_mode.dart';
 class UserModel{
   String? name;
   String? age;
-  String? email;
+  String email;
   String?id;
 
-  UserModel({required this.name,required this.age,required this.email,this.id=''});
+  UserModel({required this.name,required this.age,
+    required this.email,required this.id});
   UserModel.fromJson(Map<String,dynamic>json):this(
 
      email: json["email"],

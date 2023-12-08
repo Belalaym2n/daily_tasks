@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/task_mode.dart';
@@ -15,8 +16,8 @@ class OpperationForTask {
 
   static Stream<QuerySnapshot<TaskModel>> getTask(DateTime dateTime) {
     return
-        //print ("iam here");
-      FirebaseCollection.taskCollection()
+
+      FirebaseCollection.taskCollection().where("userUid",isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .where("date",
                 isEqualTo: DateUtils.dateOnly(dateTime).millisecondsSinceEpoch)
             .snapshots();

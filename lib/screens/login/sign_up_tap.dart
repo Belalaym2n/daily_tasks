@@ -1,11 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:daily_tasks5/layout/homeLayout.dart';
 import 'package:daily_tasks5/models/user_model.dart';
+import 'package:daily_tasks5/screens/login/login_screen.dart';
 import 'package:daily_tasks5/screens/login/login_tap.dart';
+import 'package:daily_tasks5/shared/network/firebase_managment/firebase_function.dart';
 import 'package:daily_tasks5/shared/network/firebase_managment/opperation_for_user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUpTab extends StatelessWidget {
+  static const String routeName="sign up";
   var formKey = GlobalKey<FormState>();
   var nameController = TextEditingController();
   var ageController = TextEditingController();
@@ -15,13 +19,18 @@ class SignUpTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+
       padding: const EdgeInsets.all(20.0),
       child: Form(
+
         key: formKey,
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             TextFormField(
+
               controller: nameController,
               decoration: const InputDecoration(labelText: 'Name'),
               validator: (value) {
@@ -70,9 +79,13 @@ class SignUpTab extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 OpperationalForUser.createUserWithEmailAndPassword(
-                    emailController.text, passwordController.text, () {
+                    emailController.text,
+                    nameController.text,
+                    ageController.text,
+                    passwordController.text,
+                  ( ) {
                   Navigator.pushNamedAndRemoveUntil(
-                      context, HomeLayout.routeName, (route) => false);
+                      context, LoginScreen.routeName, (route) => false);
                 }, (message) {
                   showDialog(
                     barrierDismissible: false,
@@ -110,4 +123,5 @@ class SignUpTab extends StatelessWidget {
       ),
     );
   }
+
 }

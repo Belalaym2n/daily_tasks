@@ -1,6 +1,13 @@
 
+import 'package:daily_tasks5/models/user_model.dart';
+import 'package:daily_tasks5/provider/my_provider.dart';
+import 'package:daily_tasks5/screens/login/login_screen.dart';
+import 'package:daily_tasks5/screens/login/login_tap.dart';
+import 'package:daily_tasks5/screens/login/sign_up_tap.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../constant/color.dart';
 import '../screens/setting/setting_screen.dart';
@@ -19,14 +26,27 @@ class _HomeLayoutState extends State<HomeLayout> {
 
   @override
   Widget build(BuildContext context) {
+    var pro=Provider.of<MyProvider>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
 
       extendBody: true,
       backgroundColor: mintGreen,
       appBar: AppBar(
+actions: [
+
+
+  IconButton(onPressed: () {
+    FirebaseAuth.instance.sendPasswordResetEmail(email: pro.userModel!.email);
+  }, icon: Icon(Icons.send)),
+  IconButton(onPressed: () {
+    FirebaseAuth.instance.signOut();
+    Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route) => false);
+
+  }, icon: Icon(Icons.logout)),
+  ],
         elevation: 0,
-        title: Text("Daily Task"),
+        title: Text("ToDo "),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton:

@@ -56,6 +56,9 @@ class _TaskScreenState extends State<TaskScreen> {
             }
             List<TaskModel> tasks =
                 snapshot.data!.docs.map((e) => e.data()).toList();
+            if(tasks.isEmpty){
+              return Text("No Tasks Yet");
+            }
             return ListView.builder(
               itemBuilder: (context, index) {
                 return TaskItem( taskModel: tasks[index],);

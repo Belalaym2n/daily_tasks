@@ -20,7 +20,7 @@ class FirebaseCollection{
 
  static CollectionReference<UserModel>  creatUser(){
    return
-   FirebaseFirestore.instance.collection("Users").withConverter(
+   FirebaseFirestore.instance.collection("Users").withConverter<UserModel>(
        fromFirestore: (snapshot, _) {
          return UserModel.fromJson(snapshot.data()!);
 
