@@ -46,7 +46,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
           color: mintGreen,
         ),
-      Center(child: Image(image: AssetImage("assets/images/splash-light.png"),fit: BoxFit.cover)),
+      Center(child: Image(image: AssetImage(
+          "assets/images/splash-light.png"),fit: BoxFit.cover)),
 
       ],
     );

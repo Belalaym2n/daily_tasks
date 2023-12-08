@@ -22,10 +22,17 @@ class OpperationForTask {
                 isEqualTo: DateUtils.dateOnly(dateTime).millisecondsSinceEpoch)
             .snapshots();
   }
+  static updateTask(TaskModel taskModel){
+    FirebaseCollection.taskCollection().doc(taskModel.id).update(taskModel.toJson());
+
+  }
+
 
   static Future<void> deleteTask(String id) async {
     FirebaseCollection.taskCollection().doc(id).delete();
   }
+
+
 
 
 }

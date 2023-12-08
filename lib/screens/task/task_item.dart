@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:daily_tasks5/screens/task/edit_task.dart';
+import 'package:daily_tasks5/shared/network/firebase_managment/firebase_function.dart';
 import 'package:daily_tasks5/shared/network/firebase_managment/opperation_for_task.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,9 @@ class _TaskItemState extends State<TaskItem> {
   Widget build(BuildContext context) {
 
     return Card(
+      // color: widget.taskModel.isDone?
+      // Colors.green:
+      // Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
@@ -54,18 +59,22 @@ class _TaskItemState extends State<TaskItem> {
 
                 onPressed:(context) {
 
+
                 },
                 backgroundColor: Color(0xFF21B7CA),
                 foregroundColor: Colors.white,
-                icon: Icons.share,
-                label: 'Share',
+                icon: Icons.edit,
+                label: 'Edit',
                 // borderRadius: BorderRadius.circular(25),
 
               ),
             ], ),
           child: Row(
 
+
+
             children: [
+
 
               Column(
                 children: [
@@ -74,7 +83,10 @@ class _TaskItemState extends State<TaskItem> {
                     margin: EdgeInsets.all(15),
                     height: 70,
                     width: 3,
-                    color: primaryColor,
+                    color:
+                    widget.taskModel.isDone?
+                        Colors.green:
+                    primaryColor,
                   ),
                 ],
               ),
@@ -84,12 +96,18 @@ class _TaskItemState extends State<TaskItem> {
               Column(
                 children: [
                   Text("${widget.taskModel.tittle}",style: TextStyle(
-                      color: primaryColor,
+                      color:
+                      widget.taskModel.isDone?
+                          Colors.green:
+                      primaryColor,
                       fontSize: 25,
                       fontWeight: FontWeight.w400
                   )),
                   Text("${widget.taskModel.description}",style: TextStyle(
-                      color: Colors.black54
+                      color:
+                      widget.taskModel.isDone?
+                          Colors.green:
+                      Colors.black54
                   ),),
                 ],
               ),
@@ -100,19 +118,38 @@ class _TaskItemState extends State<TaskItem> {
               Column(
                 children: [
 
-                  Container(
-                      decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(12),
+                  InkWell(
+                    onTap: () {
+                      widget.taskModel.isDone=true;
+                      setState(() {
+                        OpperationForTask.updateTask(widget.taskModel);
+
+                      });
+
+                    },
+                    child: Container(
+                        decoration: BoxDecoration(
 
 
-                      ),
-                      height: 30,
-                      width: 60,
-                      margin: EdgeInsets.all(12),
-                      child: Icon(Icons.done,size: 25,
-                        color: Colors.white,
-                      )),
+                          color:  widget.taskModel.isDone?
+                          Colors.green:
+                          primaryColor,
+                          borderRadius: BorderRadius.circular(12),
+
+
+                        ),
+                        height: 40,
+                        width: 70,
+                        margin: EdgeInsets.all(12),
+                        child:
+                        widget.taskModel.isDone?
+                            Center(child: Text("Done!",style: TextStyle(
+                              color: Colors.white
+                            ),)):
+                        Icon(Icons.done,size: 25,
+                          color: Colors.white,
+                        )),
+                  ),
                 ],
               )
 
@@ -122,4 +159,5 @@ class _TaskItemState extends State<TaskItem> {
 
     );
   }
+
 }

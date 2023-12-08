@@ -75,8 +75,9 @@ actions: [
 
             items: [
 
-              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
+
               BottomNavigationBarItem(icon: Icon(Icons.list), label: ""),
+              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
             ]),
       ),
       body: tabs[index],
@@ -84,8 +85,9 @@ actions: [
   }
 
   List<Widget> tabs = [
-    TaskScreen(),
+
     SettingScreen(),
+    TaskScreen(),
   ];
   floatingButtonSheet(){
 

@@ -6,6 +6,7 @@ import 'package:daily_tasks5/screens/login/login_screen.dart';
 import 'package:daily_tasks5/screens/login/login_tap.dart';
 import 'package:daily_tasks5/screens/login/sign_up_tap.dart';
 import 'package:daily_tasks5/screens/splash_screen/splash_screen.dart';
+import 'package:daily_tasks5/screens/task/edit_task.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName:(context)=>LoginScreen(),
         LoginTab.routeName:(context)=>LoginTab(),
         SignUpTab.routeName:(context)=>SignUpTab(),
+       // EditTask.routeName:(context)=>EditTask(),
         HomeLayout.routeName:(context)=>HomeLayout(),
       },
     );
