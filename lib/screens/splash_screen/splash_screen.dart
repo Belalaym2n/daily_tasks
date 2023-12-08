@@ -6,7 +6,6 @@ import 'package:daily_tasks5/screens/login/login_screen.dart';
 import 'package:daily_tasks5/screens/task/task_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-
 import '../../constant/color.dart';
 import '../../layout/homeLayout.dart';
 

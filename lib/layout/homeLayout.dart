@@ -1,18 +1,16 @@
 
-import 'package:daily_tasks5/models/user_model.dart';
 import 'package:daily_tasks5/provider/my_provider.dart';
 import 'package:daily_tasks5/screens/login/login_screen.dart';
-import 'package:daily_tasks5/screens/login/login_tap.dart';
-import 'package:daily_tasks5/screens/login/sign_up_tap.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../constant/color.dart';
 import '../screens/setting/setting_screen.dart';
 import '../screens/task/add_task.dart';
 import '../screens/task/task_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class HomeLayout extends StatefulWidget {
   static const String routeName = "home layout";
@@ -46,7 +44,7 @@ actions: [
   }, icon: Icon(Icons.logout)),
   ],
         elevation: 0,
-        title: Text("ToDo "),
+        title: Text(AppLocalizations.of(context)!.appTitle),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton:
@@ -82,9 +80,9 @@ actions: [
 
             items: [
 
+              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
 
               BottomNavigationBarItem(icon: Icon(Icons.list), label: ""),
-              BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
             ]),
       ),
       body: tabs[index],

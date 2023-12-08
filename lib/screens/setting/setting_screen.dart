@@ -1,8 +1,11 @@
 
 import 'package:daily_tasks5/constant/color.dart';
+import 'package:daily_tasks5/provider/my_provider.dart';
 import 'package:daily_tasks5/screens/buttom_sheet/theming_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../buttom_sheet/Language_buttom_sheet.dart';
 
@@ -16,6 +19,7 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
+    var pro=Provider.of<MyProvider>(context);
     return Scaffold(
       backgroundColor: mintGreen,
       appBar: AppBar(),
@@ -25,7 +29,7 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Language",style: TextStyle(
+            Text(AppLocalizations.of(context)!.lang,style: TextStyle(
               fontWeight: FontWeight.w500
 
 
@@ -50,7 +54,11 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     Expanded(child: Padding(
                       padding: const EdgeInsets.all(6.0),
-                      child: Text("English"),
+                      child: Text(
+                        pro.langcode=="en"?
+                            "English":
+                            "العربية"
+                      ),
                     )),
                     InkWell(
                         onTap: () {
@@ -63,7 +71,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
               height: MediaQuery.of(context).size.height*.02,
             ),
-            Text("Theming",style: TextStyle(
+            Text(AppLocalizations.of(context)!.mode,style: TextStyle(
                 fontWeight: FontWeight.w500
 
 
@@ -87,7 +95,10 @@ class _SettingScreenState extends State<SettingScreen> {
                   children: [
                     Expanded(child: Padding(
                       padding: const EdgeInsets.all(6.0),
-                      child: Text("Light"),
+                      child: Text(
+                        "Light"
+
+                      ),
                     )),
                     InkWell(
 
