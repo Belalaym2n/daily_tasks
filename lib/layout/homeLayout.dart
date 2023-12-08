@@ -53,11 +53,18 @@ actions: [
 
       FloatingActionButton(
         backgroundColor: primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(28),
+          side: BorderSide(
+            color: Colors.white,
+            width: 3
+          )
+        ),
         onPressed: () {
           floatingButtonSheet();
 
 
-      },child: Icon(Icons.add),),
+      },child: Icon(Icons.add,size: 25,),),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 12,
