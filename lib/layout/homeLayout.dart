@@ -25,12 +25,19 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     var pro=Provider.of<MyProvider>(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
 
       extendBody: true,
-      backgroundColor: mintGreen,
+      backgroundColor:     pro.mode==ThemeMode.light?
+      mintGreen:
+      blackColor,
       appBar: AppBar(
+        backgroundColor:pro.mode==ThemeMode.light?
+        primaryColor:
+            Color(0xFF060E1E)
+        ,
 actions: [
 
 
@@ -50,7 +57,12 @@ actions: [
       floatingActionButton:
 
       FloatingActionButton(
-        backgroundColor: primaryColor,
+        backgroundColor:
+        pro.mode==ThemeMode.light?
+
+        primaryColor:
+        Colors.transparent,
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(28),
           side: BorderSide(
@@ -66,11 +78,19 @@ actions: [
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 12,
-        color: Colors.white,
-       elevation: 0,
+        color:
+        pro.mode==ThemeMode.light?
+        Colors.white:
+        Colors.transparent,
+
+       elevation: 4,
         child: BottomNavigationBar(
+          selectedItemColor:pro.mode==ThemeMode.dark?
+          Colors.white:
+          primaryColor ,
         elevation: 0,
-          backgroundColor: Colors.transparent,
+          backgroundColor:
+          Colors.transparent,
 
             currentIndex: index,
             onTap: (value) {
@@ -85,8 +105,13 @@ actions: [
               BottomNavigationBarItem(icon: Icon(Icons.list), label: ""),
             ]),
       ),
-      body: tabs[index],
+
+
+      body:
+
+      tabs[index],
     );
+
   }
 
   List<Widget> tabs = [
@@ -94,9 +119,13 @@ actions: [
     SettingScreen(),
     TaskScreen(),
   ];
+
   floatingButtonSheet(){
 
     showModalBottomSheet(
+
+
+
       isScrollControlled: true,
         elevation: 0,
 

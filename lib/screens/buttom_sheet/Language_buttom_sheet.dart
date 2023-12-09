@@ -1,6 +1,5 @@
 import 'package:daily_tasks5/constant/color.dart';
 import 'package:daily_tasks5/provider/my_provider.dart';
-import 'package:daily_tasks5/provider/provider_for_language.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,9 +11,12 @@ class LanguageButtomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var pro=Provider.of<MyProvider>(context);
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
+    return Container(
+      padding: EdgeInsets.all(12),
+      color: pro.mode==ThemeMode.dark?
+    blackColor:Colors.white,
       child: Column(
+
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(

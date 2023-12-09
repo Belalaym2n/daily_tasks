@@ -21,8 +21,23 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     var pro=Provider.of<MyProvider>(context);
     return Scaffold(
-      backgroundColor: mintGreen,
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 6,
+        backgroundColor:  pro.mode==ThemeMode.light?
+        primaryColorBlack:
+        blackColor ,
+        title: Center(child: Text("${AppLocalizations.of(context)!.settings}",style: TextStyle(
+
+        ),),
+
+        ),
+      ),
+      backgroundColor:
+      pro.mode==ThemeMode.light?
+      mintGreen:
+      blackColor
+      ,
+     // appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(18.0),
 
@@ -30,6 +45,9 @@ class _SettingScreenState extends State<SettingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(AppLocalizations.of(context)!.lang,style: TextStyle(
+              color:   pro.mode==ThemeMode.light?
+              Colors.black:
+              Colors.white,
               fontWeight: FontWeight.w500
 
 
@@ -47,7 +65,9 @@ class _SettingScreenState extends State<SettingScreen> {
                 decoration: BoxDecoration(
              //     borderRadius: BorderRadius.circular(18),
                   border:Border.all(
-                    color: primaryColor
+                    color:  pro.mode==ThemeMode.light?
+                    primaryColor:
+                    Colors.white
                   )
                 ),
                 child: Row(
@@ -57,7 +77,11 @@ class _SettingScreenState extends State<SettingScreen> {
                       child: Text(
                         pro.langcode=="en"?
                             "English":
-                            "العربية"
+                            "العربية", style: TextStyle(
+                        color:  pro.mode==ThemeMode.light?
+                        Colors.black:
+                        Colors.white,
+                      ),
                       ),
                     )),
                     InkWell(
@@ -72,8 +96,10 @@ class _SettingScreenState extends State<SettingScreen> {
               height: MediaQuery.of(context).size.height*.02,
             ),
             Text(AppLocalizations.of(context)!.mode,style: TextStyle(
-                fontWeight: FontWeight.w500
-
+                fontWeight: FontWeight.w500,
+              color:  pro.mode==ThemeMode.light?
+            Colors.black:
+              Colors.white,
 
             ),),
             SizedBox(
@@ -88,15 +114,24 @@ class _SettingScreenState extends State<SettingScreen> {
                 decoration: BoxDecoration(
                   //     borderRadius: BorderRadius.circular(18),
                     border:Border.all(
-                        color: primaryColor
+                        color:  pro.mode==ThemeMode.light?
+                        primaryColor:
+                        Colors.white
                     )
-                ),
+                    )
+                ,
                 child: Row(
                   children: [
                     Expanded(child: Padding(
                       padding: const EdgeInsets.all(6.0),
                       child: Text(
-                        "Light"
+                        pro.mode==ThemeMode.light?
+                        "${AppLocalizations.of(context)!.light}":
+                        "${AppLocalizations.of(context)!.dark}",style: TextStyle(
+                        color:   pro.mode==ThemeMode.light?
+                        Colors.black:
+                        Colors.white,
+                      ),
 
                       ),
                     )),

@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:daily_tasks5/provider/my_provider.dart';
-import 'package:daily_tasks5/provider/provider_for_language.dart';
 import 'package:daily_tasks5/screens/login/login_screen.dart';
 import 'package:daily_tasks5/screens/login/login_tap.dart';
 import 'package:daily_tasks5/screens/login/sign_up_tap.dart';
@@ -40,6 +39,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(pro.langcode),
+     themeMode:pro.mode,
       debugShowCheckedModeBanner: false,
 
       initialRoute: SplashScreen.routeName,

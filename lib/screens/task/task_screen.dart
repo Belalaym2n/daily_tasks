@@ -1,7 +1,9 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:daily_tasks5/provider/my_provider.dart';
 import 'package:daily_tasks5/screens/task/task_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/color.dart';
 import '../../models/task_mode.dart';
@@ -18,6 +20,7 @@ class _TaskScreenState extends State<TaskScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var pro=Provider.of<MyProvider>(context);
     return Column(
       children: [
         Container(
@@ -35,11 +38,28 @@ class _TaskScreenState extends State<TaskScreen> {
               setState(() {});
             },
             leftMargin: 30,
-            monthColor: primaryColor,
-            dayColor: Colors.black26,
-            activeDayColor: Colors.white,
-            activeBackgroundDayColor: primaryColor,
-            dotsColor: Colors.white,
+            monthColor:    pro.mode==ThemeMode.light?
+            primaryColor:
+                Colors.white,
+            dayColor:
+            pro.mode==ThemeMode.light?
+            Colors.black26:
+            Colors.white,
+            activeDayColor:
+            pro.mode==ThemeMode.light?
+
+            Colors.white:
+                Colors.black,
+
+            activeBackgroundDayColor:
+            pro.mode==ThemeMode.light?
+            primaryColor:
+            Colors.white,
+            dotsColor:
+            pro.mode==ThemeMode.light?
+
+            Colors.white:
+            Colors.black,
             //selectableDayPredicate: (date) => date.day != 23,
             locale: 'en_ISO',
           ),
